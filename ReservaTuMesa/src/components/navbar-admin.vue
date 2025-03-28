@@ -1,29 +1,19 @@
 <template>
     <nav class="navbar">
       <h1>Mia Casa</h1>
-      <button @click="$emit('toggleMapa')" class="botonMostrar">
-        {{ mostrarMapa ? "Ocultar Mapa" : "Mostrar Mapa" }}
-      </button>
+      <router-link to="/register"><button class="botonRegistrar">
+        Registrar nuevo usuario
+      </button></router-link>
       <button @click="logout" class="btn-logout">
         Cerrar sesión
       </button>
     </nav>
-  
-    <div v-if="mostrarMapa" class="mapa-overlay">
-      <div class="mapa-container">
-        <button @click="$emit('toggleMapa')" class="cerrar-mapa">X</button>
-        <img src="../assets/maparestaurante.jpg" alt="Mapa del Restaurante" class="mapa-imagen">
-      </div>
-    </div>
   </template>
   
   <script>
   import { getAuth, signOut } from "firebase/auth";
 
   export default {
-    props: {
-      mostrarMapa: Boolean
-    },
     methods: {
     logout() {
       const auth = getAuth();
@@ -47,23 +37,25 @@
     height: 60px;
     padding: 0 0;
     width: 100%;
+    font-weight: bold;
   }
 
   .navbar h1{
     color: #F7F7FF;
   }
   
-  .botonMostrar {
-    background-color: white;
-    color: rgb(12, 12, 110);
-    border-radius: 5px;
+  .botonRegistrar {
+    background-color: #BDD5EA;
+    color: #577399;
+    border-radius: 10px;
     font-size: 20px;
     cursor: pointer;
     padding: 0;
-    width: 150px;
+    width: 300px;
+    height: 100%;
   }
   
-  .botonMostrar:hover {
+  .botonRegistrar:hover {
     background-color: #FE5F55;
     color: white;
   }

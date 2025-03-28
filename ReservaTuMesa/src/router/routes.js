@@ -20,23 +20,22 @@ const router = createRouter({
   routes
 });
 
-// Guardar la navegación antes de cargar cualquier vista
 router.beforeEach((to, from, next) => {
   const user = auth.currentUser;
   const requiresAuth = to.meta.requiresAuth;
   const roleRequired = to.meta.role;
 
   if (requiresAuth && !user) {
-    next('/login'); // Redirigir a login si no está autenticado
+    next('/login');
   } else if (requiresAuth && user) {
-    const userRole = user.displayName; // Aquí suponemos que el rol está guardado en displayName
+    const userRole = user.displayName;
     if (userRole === roleRequired) {
       next();
     } else {
-      next('/login'); // Redirigir si no tiene el rol adecuado
+      next('/login');
     }
   } else {
-    next(); // Continuar si no requiere autenticación
+    next();
   }
 });
 

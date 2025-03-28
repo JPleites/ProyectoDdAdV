@@ -36,8 +36,8 @@ const reservarMesa = async () => {
     alert("Reserva confirmada");
     mostrarFormulario.value = false;
     
-    resetFormulario(); // Limpiar el formulario
-    cargarMesas(); // Actualizar lista de mesas
+    resetFormulario();
+    cargarMesas();
   } catch (error) {
     console.error("Error al reservar:", error);
   }
@@ -65,7 +65,7 @@ onMounted(cargarMesas);
                 <input type="text" v-model="reservadaPor" required />
                 <br>
                 <label>Fecha y Hora:</label>
-                <input type="datetime-local" v-model="fecha" required />
+                <input type="time" v-model="fecha" required />
                 <br>
                 <label>Personas (máx: {{ mesaSeleccionada.capacidad }}):</label>
                 <input type="number" v-model="cantidadReservada" :max="mesaSeleccionada.capacidad" :min="1" required />

@@ -2,7 +2,7 @@
     <Navbar :mostrarMapa="mostrarMapa" @toggleMapa="toggleMapa" />
   
     <div>
-      <h1>Bienvenido al Mia Casa</h1>
+      <h1>¡Bienvenido a Mia Casa!</h1>
     </div>
 
     <div>
@@ -12,8 +12,8 @@
 
 <script setup>
 import { ref } from "vue";
-import MesasList from "../components/MesasList.vue";
 import Navbar from "../components/Navbar.vue";
+import MesasList from "../components/MesasList.vue";
 
 const mostrarMapa = ref(false);
 

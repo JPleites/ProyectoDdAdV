@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { db } from "../firebase/firebase.js";
 import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+import Navbar from "../components/navbar-admin.vue";
 
 const mesas = ref([]);
 const mesaSeleccionada = ref(null);
@@ -14,7 +15,6 @@ const seleccionarMesa = (mesa) => {
     mesaSeleccionada.value = mesa;
     liberarMesa();
 };
-
 
 const liberarMesa = async () => {
   if (!mesaSeleccionada.value) return;
@@ -30,7 +30,7 @@ const liberarMesa = async () => {
 
     mostrarFormulario.value = false;
     
-    cargarMesas(); // Actualizar lista de mesas
+    cargarMesas();
   } catch (error) {
     console.error("Error al liberar:", error);
   }
@@ -45,6 +45,7 @@ onMounted(cargarMesas);
 </script>
 
 <template>
+  <Navbar/>
   <div class="mesas-list">
     <h2>Listado de Mesas</h2>
     <div class="mesas-cards">
@@ -57,7 +58,7 @@ onMounted(cargarMesas);
           <p><b>Capacidad ocupada de la mesa: </b>{{ mesa.CantidadReservada }}</p> 
           <p><b>Capacidad total de la mesa: </b>{{ mesa.capacidad }}</p>
           <p><b>Reservada por: </b>{{ mesa.ReservadaPor }}</p>
-          <p><b>Fecha de la reservación: </b>{{ mesa.fecha }}</p>
+          <p><b>Hora de la reservación: </b>{{ mesa.fecha }}</p>
           
         </div>
         <div class="btn-reserva">

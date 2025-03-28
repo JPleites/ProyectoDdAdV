@@ -1,18 +1,20 @@
 <template>
   <div class="form">
+    <img src="../assets/icono.jpg">
     <table>
       <caption>Registrar nuevo usuario</caption>
       <tbody>
         <tr>
           <td>
             <form @submit.prevent="register">
-            <input v-model="email" type="email" placeholder="Correo electrónico" required />
-            <input v-model="password" type="password" placeholder="Contraseña" required />
+            <input v-model="email" type="email" placeholder="Correo electrónico" required /><br><br>
+            <input v-model="password" type="password" placeholder="Contraseña" required /><br><br>
             <select v-model="role" required>
               <option value="cliente">Cliente</option>
               <option value="admin">Admin</option>
-            </select><br>
-            <button type="submit" class="btnform">Registrar</button>
+            </select><br><br>
+            <button type="submit" class="btnform">Registrar</button><br>
+            <router-link to="/login" class="btnlogin">Iniciar Sesión</router-link>
           </form>
           <p v-if="error" class="error">{{ error }}</p>
           </td>
@@ -26,31 +28,26 @@
 import { ref } from "vue";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
-import { auth, db } from "../firebase/firebase"; // Ajusta la ruta de tu archivo de Firebase
+import { auth, db } from "../firebase/firebase";
 
 export default {
   name: "RegisterView",
   setup() {
     const email = ref("");
     const password = ref("");
-    const role = ref("cliente"); // Rol por defecto
+    const role = ref("cliente");
     const error = ref("");
 
-    // Función para registrar el usuario
     const register = async () => {
       try {
-        // Crear el usuario en Firebase Authentication
         const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
         const user = userCredential.user;
 
-        // Guardar el rol en Firestore
         await setDoc(doc(db, "users", user.uid), {
-          role: role.value, // Guardamos el rol del usuario
+          role: role.value,
         });
 
-        // Redirigir al login después de registrar el usuario
         alert("Registro exitoso. Ahora puedes iniciar sesión.");
-        // Aquí podrías redirigir al login usando `router.push('/login')`
 
       } catch (err) {
         console.error("Error al registrar usuario:", err);
@@ -63,7 +60,24 @@ export default {
 };
 </script>
 
-<style scoped>  .form{
+<style scoped>  
+.btnlogin{
+  color:#495867;
+  font-weight: bold;
+}
+
+.btnlogin:hover{
+  color: #71a9e1;
+}
+
+.form img{
+    width: 300px;
+    object-fit: contain;
+    border: #495867 5px solid;
+    border-radius: 10px;
+  }
+  
+.form{
   display: flex;
   align-items: center;
   flex-direction: column;
