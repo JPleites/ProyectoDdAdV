@@ -1,5 +1,6 @@
 <template>
     <nav class="navbar">
+      <h1>Mia Casa</h1>
       <button @click="$emit('toggleMapa')" class="botonMostrar">
         {{ mostrarMapa ? "Ocultar Mapa" : "Mostrar Mapa" }}
       </button>
@@ -91,4 +92,3 @@
     background: darkred;
   }
   </style>
-  
