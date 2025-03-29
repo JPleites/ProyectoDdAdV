@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar">
-      <h1>Mia Casa</h1>
+      <h1>Notre Maison</h1>
       <router-link to="/register"><button class="botonRegistrar">
         Registrar nuevo usuario
       </button></router-link>

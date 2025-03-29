@@ -2,7 +2,7 @@
     <Navbar :mostrarMapa="mostrarMapa" @toggleMapa="toggleMapa" />
   
     <div>
-      <h1>¡Bienvenido a Mia Casa!</h1>
+      <h1>¡Bienvenido a Notre Maison!</h1>
     </div>
 
     <div>
